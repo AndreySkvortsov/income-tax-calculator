@@ -29,10 +29,8 @@ public class IncomeTaxCalculatorDbUtil
 
     }
 
-    public List<IncomeTax> calculateIncomeTax(String territory, Double taxableIncome) throws Exception
+    public IncomeTax calculateIncomeTax(String territory, Double taxableIncome) throws Exception
     {
-
-        List<IncomeTax> incomeTax = new ArrayList<>();
 
         Connection myConnection = null;
         PreparedStatement myStatement = null;
@@ -74,42 +72,35 @@ public class IncomeTaxCalculatorDbUtil
 
             // Retrieves data from the result set.
 
-            double federalBaseAmount = 0;
-            double federalTaxRate = 0;
-            
-            double provincialBaseAmount = 0;
-            double provincialTaxRate = 0;
+            List<Double> federalBaseAmounts = new ArrayList<>();
+            List<Double> federalTaxRates = new ArrayList<>();
+            List<Double> provincialBaseAmounts = new ArrayList<>();
+            List<Double> provincialTaxRates = new ArrayList<>();
 
             while (myResultSet.next())
             {
-                
-                int id = myResultSet.getInt(1);
-                
-                if (myResultSet.getString(2).equals("federal"))
+
+                if (myResultSet.getString(2).equals("federal") && myResultSet.getDouble(3) != 0
+                        && myResultSet.getDouble(4) != 0)
                 {
 
-                    federalBaseAmount = myResultSet.getDouble(3);
-                    federalTaxRate = myResultSet.getDouble(4);
+                    federalBaseAmounts.add(myResultSet.getDouble(3));
+                    federalTaxRates.add(myResultSet.getDouble(4));
 
-                } else
+                } else if (myResultSet.getDouble(3) != 0 && myResultSet.getDouble(4) != 0)
                 {
-                
-                    provincialBaseAmount = myResultSet.getDouble(3);
-                    provincialTaxRate = myResultSet.getDouble(4);
-                    
+
+                    provincialBaseAmounts.add(myResultSet.getDouble(3));
+                    provincialTaxRates.add(myResultSet.getDouble(4));
+
                 }
-
-                // Creates a new IncomeTax object.
-
-                IncomeTax tempIncomeTax = new IncomeTax(id, taxableIncome, federalBaseAmount, federalTaxRate, provincialBaseAmount, provincialTaxRate);
-
-                // Adds to a list of IncomeTax objects.
-
-                incomeTax.add(tempIncomeTax);
 
             }
 
-            return incomeTax;
+            // Returns a new IncomeTax object.
+
+            return new IncomeTax(taxableIncome, federalBaseAmounts, federalTaxRates, provincialBaseAmounts,
+                    provincialTaxRates);
 
         } finally
         {
