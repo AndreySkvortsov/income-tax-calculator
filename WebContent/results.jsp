@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
@@ -7,31 +7,35 @@
 	<!-- Displays results of a calculation -->
 
 	Federal tax:
+	
+	<fmt:setLocale value="en_CA" />
+	
+	<fmt:formatNumber type="currency" value="${INCOME_TAX.federalTax}" />
 
 	<br />
 	<br /> 
 	
-	Provincial tax:	
+	Provincial tax:	<fmt:formatNumber type="currency" value="${INCOME_TAX.provincialTax}" />
 
 	<br />
 	<br /> 
 	
-	Total tax:
+	Total tax: <fmt:formatNumber type="currency" value="${INCOME_TAX.totalTax}" />
 
 	<br />
 	<br /> 
 	
-	After-tax income:
+	After-tax income: <fmt:formatNumber type="currency" value="${INCOME_TAX.afterTaxIncome}" />
 
 	<br />
 	<br /> 
 	
-	Average tax rate:
+	Average tax rate: <fmt:formatNumber type="percent" maxIntegerDigits="3" value="${INCOME_TAX.averageTaxRate}" />
 
 	<br />
 	<br /> 
 	
-	Marginal tax rate:
+	Marginal tax rate: <fmt:formatNumber type="percent" maxIntegerDigits="3" value="${INCOME_TAX.marginalTaxRate}" />
 
 </body>
 

@@ -1,7 +1,6 @@
 package org.avs.incomeTaxCalculator;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -109,7 +108,7 @@ public class IncomeTaxCalculatorServlet extends HttpServlet
         
         // Receives tax rates from a database. 
         
-        List<IncomeTax> incomeTax = incomeTaxCalculatorDbUtil.calculateIncomeTax(territory, taxableIncome);
+        IncomeTax incomeTax = incomeTaxCalculatorDbUtil.calculateIncomeTax(territory, taxableIncome);
         
         // Adds result to the request.
         

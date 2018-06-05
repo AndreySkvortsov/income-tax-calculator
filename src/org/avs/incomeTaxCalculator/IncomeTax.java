@@ -42,14 +42,94 @@ public class IncomeTax
     public double getFederalTax()
     {
 
-        return federalTax;
+        if (taxableIncome < federalBaseAmounts.get(0))
+        {
+
+            // NOTE: "Remember to claim the corresponding provincial or territorial non-refundable tax credit to which
+            // you are entitled."
+            return 0.0;
+
+        } else
+        {
+
+            for (int i = 0; i < (federalBaseAmounts.size() - 1); i++)
+            {
+
+                if (taxableIncome > federalBaseAmounts.get((i + 1)))
+                {
+
+                    federalTax = federalTax
+                            + (federalBaseAmounts.get((i + 1)) - federalBaseAmounts.get(i)) * federalTaxRates.get(i);
+
+                } else
+                {
+
+                    federalTax = federalTax + (taxableIncome - federalBaseAmounts.get(i)) * federalTaxRates.get(i);
+
+                }
+
+            }
+
+            // Calculates federal tax for the last bracket portion.
+
+            if (taxableIncome > federalBaseAmounts.get(federalBaseAmounts.size() - 1))
+            {
+
+                federalTax = federalTax + (taxableIncome - federalBaseAmounts.get(federalBaseAmounts.size() - 1))
+                        * federalTaxRates.get(federalBaseAmounts.size() - 1);
+
+            }
+
+            return federalTax;
+
+        }
 
     }
 
     public double getProvincialTax()
     {
 
-        return provincialTax;
+        if (taxableIncome < provincialBaseAmounts.get(0))
+        {
+
+            return 0.0;
+
+        } else
+        {
+
+            for (int i = 0; i < (provincialBaseAmounts.size() - 1); i++)
+            {
+
+                if (taxableIncome > provincialBaseAmounts.get((i + 1)))
+                {
+
+                    provincialTax = provincialTax + (provincialBaseAmounts.get((i + 1)) - provincialBaseAmounts.get(i))
+                            * provincialTaxRates.get(i);
+
+                } else
+                {
+
+                    provincialTax = provincialTax
+                            + (taxableIncome - provincialBaseAmounts.get(i)) * provincialTaxRates.get(i);
+
+                }
+
+            }
+
+            // Calculates provincial tax for the last bracket portion.
+
+            if (taxableIncome > provincialBaseAmounts.get(provincialBaseAmounts.size() - 1))
+            {
+
+                provincialTax = provincialTax
+                        + (taxableIncome - provincialBaseAmounts.get(provincialBaseAmounts.size() - 1))
+                                * provincialTaxRates.get(provincialBaseAmounts.size() - 1);
+
+            }
+
+            return provincialTax;
+
+        }
 
     }
 
