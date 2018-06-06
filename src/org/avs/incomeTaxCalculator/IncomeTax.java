@@ -25,7 +25,6 @@ public class IncomeTax
     private double totalTax;
     private double afterTaxIncome;
     private double averageTaxRate;
-    private double marginalTaxRate;
 
     public IncomeTax(double taxableIncome, List<Double> federalBaseAmounts, List<Double> federalTaxRates,
             List<Double> provincialBaseAmounts, List<Double> provincialTaxRates)
@@ -45,8 +44,7 @@ public class IncomeTax
         if (taxableIncome < federalBaseAmounts.get(0))
         {
 
-            // NOTE: "Remember to claim the corresponding provincial or territorial non-refundable tax credit to which
-            // you are entitled."
+            // NOTE: "Remember to claim the corresponding provincial or territorial non-refundable tax credit to which you are entitled."
             return 0.0;
 
         } else
@@ -61,7 +59,7 @@ public class IncomeTax
                     federalTax = federalTax
                             + (federalBaseAmounts.get((i + 1)) - federalBaseAmounts.get(i)) * federalTaxRates.get(i);
 
-                } else
+                } else if (taxableIncome > federalBaseAmounts.get(i))
                 {
 
                     federalTax = federalTax + (taxableIncome - federalBaseAmounts.get(i)) * federalTaxRates.get(i);
@@ -106,7 +104,7 @@ public class IncomeTax
                     provincialTax = provincialTax + (provincialBaseAmounts.get((i + 1)) - provincialBaseAmounts.get(i))
                             * provincialTaxRates.get(i);
 
-                } else
+                } else if (taxableIncome > provincialBaseAmounts.get(i))
                 {
 
                     provincialTax = provincialTax
@@ -143,21 +141,34 @@ public class IncomeTax
     public double getAfterTaxIncome()
     {
 
-        return (taxableIncome - getTotalTax());
+        if (taxableIncome >= 0)
+        {
+
+            return (taxableIncome - getTotalTax());
+
+        } else
+        {
+
+            return 0.0;
+
+        }
 
     }
 
     public double getAverageTaxRate()
     {
 
-        return averageTaxRate;
-
-    }
-
-    public double getMarginalTaxRate()
-    {
-
-        return marginalTaxRate;
+        if (getTotalTax() != 0.0 && taxableIncome > 0)
+            {
+            
+            return (getTotalTax() / taxableIncome);
+            
+            } else
+            {
+                
+                return 0.0;
+                
+            }
 
     }
 
@@ -169,7 +180,7 @@ public class IncomeTax
                 + ", federalTaxRates=" + federalTaxRates + ", provincialBaseAmounts=" + provincialBaseAmounts
                 + ", provincialTaxRates=" + provincialTaxRates + ", federalTax=" + federalTax + ", provincialTax="
                 + provincialTax + ", totalTax=" + totalTax + ", afterTaxIncome=" + afterTaxIncome + ", averageTaxRate="
-                + averageTaxRate + ", marginalTaxRate=" + marginalTaxRate + "]";
+                + averageTaxRate + "]";
     }
 
 }

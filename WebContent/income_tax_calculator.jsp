@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 
@@ -48,13 +49,13 @@
 					<option>Saskatchewan, SK</option>
 					<option>Yukon, YT</option>
 
-				</select>
-				
-				<br /> <br />
+				</select> <br /> <br />
 
 				<!-- Adds a text field for taxable income -->
 
-				<input type="hidden" name="command" value="CALCULATE" /> Taxable income: <input type="text" name="taxableIncome" />
+				<input type="hidden" name="command" value="CALCULATE" /> Taxable income:
+				
+				<input type="text" placeholder="$" data-toggle="tooltip" data-placement="top" title="Employment income and taxable benefits." name="taxableIncome" value="" />
 				
 				<br /> <br />
 
@@ -75,18 +76,15 @@
 			<hr>
 
 			<div id="wrapper">
-				<div id="footer">
-				
-				    The calculations are approximate and include
-					the basic personal tax amount non-refundable tax credit. After-tax
-					income is the total income net of federal tax and provincial tax.
-					
-				</div>
+				<div id="footer">The calculations are approximate and include
+					the basic personal tax amount non-refundable tax credit.</div>
 			</div>
 
 			<hr>
 
-			Rates are up to date as of <%=new java.util.Date()%>
+			Rates are up to date as of
+			<c:set var="now" value="<%= new java.util.Date()%>" />
+			<fmt:formatDate type="date" value="${now}" />
 
 		</div>
 	</div>

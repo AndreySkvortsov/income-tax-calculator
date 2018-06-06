@@ -43,14 +43,14 @@ public class IncomeTaxCalculatorDbUtil
 
             myConnection = dataSource.getConnection();
 
-            // Searches for tax rates in case taxable income is not empty/greater than zero.
+            // Searches for tax rates in case taxable income is not empty.
 
-            if (taxableIncome != null && taxableIncome >= 0)
+            if (taxableIncome != null)
             {
 
                 // Creates SQL statement to search for federal/provincial tax rates.
 
-                String sql = "SELECT * FROM federal_tax WHERE federal_tax.base_amount <= ? UNION ALL SELECT * FROM provincial_tax WHERE provincial_tax.base_amount <= ? AND provincial_tax.territory LIKE ?";
+                String sql = "SELECT * FROM federal_tax UNION ALL SELECT * FROM provincial_tax WHERE provincial_tax.territory LIKE ?";
 
                 // Creates Prepared Statement.
 
@@ -60,9 +60,7 @@ public class IncomeTaxCalculatorDbUtil
 
                 String theTerritory = "%" + territory.toLowerCase() + "%";
 
-                myStatement.setDouble(1, taxableIncome);
-                myStatement.setDouble(2, taxableIncome);
-                myStatement.setString(3, theTerritory);
+                myStatement.setString(1, theTerritory);
 
             }
 

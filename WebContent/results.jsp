@@ -30,12 +30,7 @@
 	<br />
 	<br /> 
 	
-	Average tax rate: <fmt:formatNumber type="percent" maxIntegerDigits="3" value="${INCOME_TAX.averageTaxRate}" />
-
-	<br />
-	<br /> 
-	
-	Marginal tax rate: <fmt:formatNumber type="percent" maxIntegerDigits="3" value="${INCOME_TAX.marginalTaxRate}" />
+	Average tax rate: <fmt:formatNumber type="percent" maxIntegerDigits="3" minFractionDigits="2" maxFractionDigits="2" value="${INCOME_TAX.averageTaxRate}" />
 
 </body>
 
