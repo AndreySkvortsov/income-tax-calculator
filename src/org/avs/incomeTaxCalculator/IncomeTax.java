@@ -44,7 +44,8 @@ public class IncomeTax
         if (taxableIncome < federalBaseAmounts.get(0))
         {
 
-            // NOTE: "Remember to claim the corresponding provincial or territorial non-refundable tax credit to which you are entitled."
+            // NOTE: "Remember to claim the corresponding provincial or territorial non-refundable tax credit to which
+            // you are entitled."
             return 0.0;
 
         } else
@@ -159,16 +160,16 @@ public class IncomeTax
     {
 
         if (getTotalTax() != 0.0 && taxableIncome > 0)
-            {
-            
+        {
+
             return (getTotalTax() / taxableIncome);
-            
-            } else
-            {
-                
-                return 0.0;
-                
-            }
+
+        } else
+        {
+
+            return 0.0;
+
+        }
 
     }
 

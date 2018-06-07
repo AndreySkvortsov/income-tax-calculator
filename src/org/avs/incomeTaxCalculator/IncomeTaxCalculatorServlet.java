@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 @WebServlet("/IncomeTaxCalculatorServlet")
 public class IncomeTaxCalculatorServlet extends HttpServlet
 {
-    
+
     private static final long serialVersionUID = 1L;
 
     private IncomeTaxCalculatorDbUtil incomeTaxCalculatorDbUtil;
@@ -80,11 +80,15 @@ public class IncomeTaxCalculatorServlet extends HttpServlet
 
             case "CALCULATE":
 
-                calculateIncomeTax(request, response);
-                break;
+                if (request.getParameter("taxableIncome") != null
+                        && request.getParameter("taxableIncome").trim().length() != 0)
+                {
 
-            default:
-                calculateIncomeTax(request, response); // In case there will be more than one option in future.
+                    calculateIncomeTax(request, response);
+
+                }
+
+                break;
 
             }
 
@@ -99,27 +103,27 @@ public class IncomeTaxCalculatorServlet extends HttpServlet
 
     private void calculateIncomeTax(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
-        
+
         // Reads territory from a drop-down list.
-        
-        String territory = request.getParameter("territory");        
-            
+
+        String territory = request.getParameter("territory");
+
         // Reads taxable income from a text field.
-        
+
         Double taxableIncome = Double.parseDouble(request.getParameter("taxableIncome"));
-        
-        // Receives tax rates from a database. 
-        
+
+        // Receives tax rates from a database.
+
         IncomeTax incomeTax = incomeTaxCalculatorDbUtil.calculateIncomeTax(territory, taxableIncome);
-        
+
         // Adds result to the request.
-        
+
         request.setAttribute("INCOME_TAX", incomeTax);
-        
+
         // Sends results to a JSP page (view).
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/income_tax_calculator.jsp");
-        dispatcher.forward(request, response);        
+        dispatcher.forward(request, response);
 
     }
 
