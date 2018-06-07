@@ -50,7 +50,7 @@
 
 <body>
 
-	<nav class="black z-depth-4" role="navigation">
+	<nav class="light-blue darken-4 z-depth-4" role="navigation">
 
 		<div class="nav-wrapper container">
 
@@ -98,7 +98,7 @@
 
 				<div class="col s3 offset-s2">
 
-					<select name="territory">
+					<select name="territory" >
 
 						<option value="Alberta, AB"><fmt:message key="label.alberta" /></option>
 
@@ -147,12 +147,12 @@
 
 				<div class="center">
 
-					<a class="btn-floating btn-large pink darken-4 pulse tooltipped"
+					<a class="btn-floating btn-large light-blue darken-4 pulse tooltipped"
 						data-position="right"
 						data-tooltip="<fmt:message key="label.estimateTaxesTooltip" />">
 
 						<input type="submit"
-						class="btn-floating btn-large pink darken-4 white-text z-depth-4"
+						class="btn-floating btn-large light-blue darken-4 white-text z-depth-4"
 						value="<fmt:message key="label.go" />" />
 
 					</a>
@@ -173,7 +173,7 @@
 
 	<jsp:include page="results.jsp" />
 
-	<footer class="page-footer pink darken-4">
+	<footer class="page-footer blue lighten-4">
 
 		<div class="container">
 
@@ -181,7 +181,7 @@
 
 				<div class="center">
 
-					<p class="white-text">
+					<p class="black-text">
 
 						<fmt:message key="label.disclamer" />
 
@@ -203,7 +203,7 @@
 
 				<div class="center">
 
-					<p class="white-text">
+					<p class="black-text">
 
 						<fmt:message key="label.madeBy" />
 
