@@ -18,7 +18,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	content="width=device-width, initial-scale=0.6, maximum-scale=1.0" />
 
 <title>Income Tax Calculator</title>
 
@@ -44,8 +44,8 @@
 
 	<nav class="black z-depth-4" role="navigation">
 		<div class="nav-wrapper container">
-			<a href="income_tax_calculator.jsp" class="brand-logo left">AVS</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<a href="income_tax_calculator.jsp" class="brand-logo left hide-on-small-only">AVS</a>
+			<ul id="nav-mobile" class="right">
 				<li><a href="income_tax_calculator.jsp?language=en_CA">English</a></li>
 				<li><a href="income_tax_calculator.jsp?language=ru_CA">Русский</a></li>
 				<li><a href="income_tax_calculator.jsp?language=rs_CA">Srpski</a></li>
@@ -71,7 +71,7 @@
 			<div class="row">
 			
 				<!-- Adds a drop-down list for provinces and territories -->
-				<div class="col s3 offset-s2">
+				<div class="col s12 m6 l5 offset-l1">
 					<select name="territory">
 						<option value="Alberta, AB"><fmt:message key="label.alberta" /></option>
 						<option value="British Columbia, BC"><fmt:message key="label.britishColumbia" /></option>
@@ -90,7 +90,7 @@
 				</div>
 				
 				<!-- Adds a text field for taxable income -->
-				<div class="col s3 offset-s2">
+				<div class="col s12 m6 l5">
 					<input type="hidden" name="command" value="CALCULATE" /> <input
 						type="text"
 						placeholder="<fmt:message key="label.taxableIncomePlaceholder" />"

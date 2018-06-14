@@ -18,7 +18,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	content="width=device-width, initial-scale=0.6, maximum-scale=1.0" />
 
 <title>Income Tax Calculator</title>
 
@@ -45,7 +45,7 @@
 	<!-- Displays results of a calculation -->
 	<div class="row">
 
-		<div class="col s3 offset-s3">
+		<div class="col s12 m12 l4 offset-l2">
 			<table>
 				<tr>
 					<th>
@@ -54,9 +54,9 @@
 						</h6>
 					</th>
 					<td>
-						<h6>
+						<h6 align="right">
 							<fmt:formatNumber type="currency"
-								value="${INCOME_TAX.federalTax}" pattern="CA$ ###,###,###.##" />
+								value="${INCOME_TAX.federalTax}" pattern="CA$###,###,###.##" />
 						</h6>
 					</td>
 				</tr>
@@ -67,16 +67,16 @@
 						</h6>
 					</th>
 					<td>
-						<h6>
+						<h6 align="right">
 							<fmt:formatNumber type="currency"
-								value="${INCOME_TAX.provincialTax}" pattern="CA$ ###,###,###.##" />
+								value="${INCOME_TAX.provincialTax}" pattern="CA$###,###,###.##" />
 						</h6>
 					</td>
 				</tr>
 			</table>
 		</div>
 		
-		<div class="col s3 offset-6">
+		<div class="col s12 m12 l4">
 			<table>
 				<tr>
 					<th>
@@ -85,9 +85,9 @@
 						</h6>
 					</th>
 					<td>
-						<h6>
+						<h6 align="right">
 							<font color="red"> <fmt:formatNumber type="currency"
-									value="${INCOME_TAX.totalTax}" pattern="CA$ ###,###,###.##" />
+									value="${INCOME_TAX.totalTax}" pattern="CA$###,###,###.##" />
 							</font>
 						</h6>
 					</td>
@@ -99,7 +99,7 @@
 						</h6>
 					</th>
 					<td>
-						<h6>
+						<h6 align="right">
 							<fmt:formatNumber type="percent" maxIntegerDigits="3"
 								minFractionDigits="2" maxFractionDigits="2"
 								value="${INCOME_TAX.averageTaxRate}" />
@@ -110,7 +110,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col s4 offset-s4">
+			<div class="col s12 m12 l4 offset-l4">
 				<table>
 					<tr>
 						<th>
@@ -119,10 +119,10 @@
 							</h6>
 						</th>
 						<td>
-							<h6>
+							<h6 align="right">
 								<font color="green"> <fmt:formatNumber type="currency"
 										value="${INCOME_TAX.afterTaxIncome}"
-										pattern="CA$ ###,###,###.##" />
+										pattern="CA$###,###,###.##" />
 								</font>
 							</h6>
 						</td>
