@@ -9,7 +9,7 @@
 
 <fmt:setLocale value="${language}" />
 <fmt:setBundle
-	basename="org.avs.incomeTaxCalculator.i18n.resources.mylabels" />
+	basename="solutions.avs.incomeTaxCalculator.i18n.resources.mylabels" />
 
 <!DOCTYPE html>
 

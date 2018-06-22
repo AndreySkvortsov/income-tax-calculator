@@ -1,4 +1,4 @@
-package org.avs.incomeTaxCalculator;
+package solutions.avs.incomeTaxCalculator;
 
 import java.io.IOException;
 
